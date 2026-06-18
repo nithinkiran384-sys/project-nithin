@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Submission Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .welcome-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .welcome-section h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section p {
+            color: #666;
+        }
+
+        .form-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-section h3 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="file"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .form-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-reset {
+            background: #e5e7eb;
+            color: #333;
+        }
+
+        .btn-reset:hover {
+            background: #d1d5db;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .form-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                margin: 15px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>📊 Project Management Dashboard</h1>
+        <a href="index.html">← Logout</a>
+    </div>
+
+    <div class="container">
+        <div class="welcome-section">
+            <h2>Welcome, Officer! 👋</h2>
+            <p>You are now logged in to the Government Project Management Portal. Please fill in the project details below.</p>
+        </div>
+
+        <div class="form-section">
+            <h3>Submit Project Details</h3>
+            
+            <form id="projectForm" onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="projectName">Project Name / Code *</label>
+                    <input 
+                        type="text" 
+                        id="projectName" 
+                        name="projectName" 
+                        placeholder="Enter project name or code"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Project Location / Address *</label>
+                    <input 
+                        type="text" 
+                        id="address" 
+                        name="address" 
+                        placeholder="Enter project address"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Project Description *</label>
+                    <textarea 
+                        id="description" 
+                        name="description" 
+                        placeholder="Describe the project details and objectives"
+                        required
+                    ></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="budget">Budget (in ₹) *</label>
+                    <input 
+                        type="text" 
+                        id="budget" 
+                        name="budget" 
+                        placeholder="Enter budget amount"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="timeline">Timeline *</label>
+                    <input 
+                        type="text" 
+                        id="timeline" 
+                        name="timeline" 
+                        placeholder="Enter project timeline (e.g., 6 months)"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="document">Upload Project Document *</label>
+                    <input 
+                        type="file" 
+                        id="document" 
+                        name="document" 
+                        accept=".pdf,.doc,.docx,.xls,.xlsx"
+                        required
+                    >
+                </div>
+
+                <div class="form-actions">
+                    <a href="google maps " class="google" </a>
+                    <button type="submit" class="btn btn-submit">SUBMIT PROJECT</button>
+                    <button type="reset" class="btn btn-reset">CLEAR FORM</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function handleSubmit(e) {
+            e.preventDefault();
+
+            const projectName = document.getElementById('projectName').value.trim();
+            const address = document.getElementById('address').value.trim();
+            const description = document.getElementById('description').value.trim();
+            const budget = document.getElementById('budget').value.trim();
+            const timeline = document.getElementById('timeline').value.trim();
+
+            if (!projectName || !address || !description || !budget || !timeline) {
+                alert('Please fill in all required fields');
+                return false;
+            }
+
+            const projectData = {
+                name: projectName,
+                address: address,
+                description: description,
+                budget: budget,
+                timeline: timeline,
+                submittedAt: new Date().toLocaleString()
+            };
+
+            localStorage.setItem('projectData', JSON.stringify(projectData));
+            alert('Project submitted successfully!');
+            window.location.href = 'confirmation.html';
+        }
+    </script>
+</body>
+</html>
